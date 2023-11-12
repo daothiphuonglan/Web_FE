@@ -1,13 +1,10 @@
 import React from "react";
-import SachModel from '../model/SachModel'
+import SachModel from "../model/SachModel";
 import { my_request } from "./Request";
 
 
-export async function layToanBoSach(): Promise<SachModel[]> {
+async function laySach(duongDan: string): Promise<SachModel[]> {
     const ketQua: SachModel[] = [];
-
-    // Xác định endpoint
-    const duongDan: string = 'http://localhost:8080/sach';
 
     // Gọi phương thức request
     const response = await my_request(duongDan);
@@ -30,4 +27,22 @@ export async function layToanBoSach(): Promise<SachModel[]> {
     }
 
     return ketQua;
+}
+
+export async function layToanBoSach(): Promise<SachModel[]> {
+   
+    // Xác định endpoint
+    const duongDan: string = 'http://localhost:8080/sach?sort=maSach,desc';
+
+    return laySach(duongDan);
+
+}
+
+export async function lay3SachMoiNhat(): Promise<SachModel[]> {
+   
+    // Xác định endpoint
+    const duongDan: string = 'http://localhost:8080/sach?sort=maSach,desc&page=0&size=3';
+
+    return laySach(duongDan);
+
 }

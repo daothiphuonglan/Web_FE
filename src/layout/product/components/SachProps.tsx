@@ -1,10 +1,54 @@
 import React from 'react';
 import SachModel from '../../../model/SachModel';
-
+import {useState, useEffect} from 'react';
+import HinHAnhModel from '../../../model/HinhAnhModel';
+import { layToanBoAnhCuaMotSach } from "../../../api/HinhAnhApi";
 interface SachPropsInterface {
     sach:SachModel;
 } 
 const SachProps: React.FC<SachPropsInterface> = (props) => {
+
+    const maSach: number = props.sach.maSach;
+
+    const [danhSachAnh, setDanhSachAnh] = useState<HinHAnhModel[]>([]);
+    const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
+    const [baoLoi, setBaoLoi] = useState(null);
+
+    useEffect(() => {
+        layToanBoAnhCuaMotSach(maSach).then(
+            hinhAnhData =>{
+                setDanhSachAnh(hinhAnhData);
+                setDangTaiDuLieu(false);
+            }
+        ).catch(
+            error => {
+                setDangTaiDuLieu(false);
+                setBaoLoi(error.message);
+            }
+        );
+    }, [] // Chi goi mot lan
+    )
+
+    if (dangTaiDuLieu) {
+        return (
+            <div>
+                <h1>Đang tải dữ liệu</h1>
+            </div>
+        );
+    }
+
+    if (baoLoi) {
+        return (
+            <div>
+                <h1>Gặp lỗi: {baoLoi}</h1>
+            </div>
+        );
+    }
+
+    let duLieuAnh:string="";
+    if(danhSachAnh[0] && danhSachAnh[0].duLieuAnh){
+        duLieuAnh=danhSachAnh[0].duLieuAnh;
+    }
     return (
         <div className="col-md-3 mt-2">
             <div className="card">
