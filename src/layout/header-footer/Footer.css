@@ -1,0 +1,64 @@
+.footer-container {
+    padding-top: 30px;
+    background: linear-gradient(180deg, rgb(205, 217, 217) 30%, rgb(207, 203, 203) );
+}
+.footer {
+    display: flex;
+  
+
+}
+
+.footer-left {
+    flex: 1;
+    display: flex;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.footer-left-1 li,
+.footer-left-2 li,
+.footer-left-3 li {
+ 
+
+  list-style: none;
+  margin-top: 20px;
+    
+}
+
+.footer-right {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.footer-right input {
+    outline: none;
+    border: none;
+    width: 50% ;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+    
+}
+
+.footer-right button {
+    height: 40px;
+    background: black;
+    color:white;
+}
+
+.footer-bottom {
+    border-top: 1px solid black;
+    margin: 30px;
+    padding-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-bottom-right .icon {
+     width: 50px;
+     justify-content: center;
+     align-items: center;
+     
+} 

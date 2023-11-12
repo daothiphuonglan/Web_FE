@@ -1,0 +1,33 @@
+.banner {
+    padding: 40px;
+    display: flex;
+    background: linear-gradient(180deg, rgb(205, 217, 217) 30%, rgb(207, 203, 203) ); ;
+}
+
+.banner-left {
+    flex: 1;
+
+}
+.banner-left button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    justify-content: center;
+   
+}
+.banner-left p{
+    font-size: 15px;
+    
+    justify-content: center;
+    align-items: center;
+}
+.banner-right {
+    flex: 1;
+}
+
+.banner-right img {
+   width: 40%;
+   
+}
