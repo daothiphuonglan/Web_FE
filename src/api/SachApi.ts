@@ -2,8 +2,13 @@ import React from "react";
 import SachModel from "../model/SachModel";
 import { my_request } from "./Request";
 
+interface KetQuaInterface{
+    ketQua: SachModel[];
+    tongSoTrang: number;
+    tongSoSach: number;
+}
 
-async function laySach(duongDan: string): Promise<SachModel[]> {
+async function laySach(duongDan: string): Promise<KetQuaInterface> {
     const ketQua: SachModel[] = [];
 
     // Gọi phương thức request
@@ -12,6 +17,10 @@ async function laySach(duongDan: string): Promise<SachModel[]> {
     // Lấy ra json sach
     const responseData = response._embedded.saches;
     console.log(responseData);
+
+    // lấy thông tin trang
+    const tongSoTrang:number = response.page.totalPages;
+    const tongSoSach: number = response.page.totalElements;
 
     for (const key in responseData) {
         ketQua.push({
@@ -26,19 +35,19 @@ async function laySach(duongDan: string): Promise<SachModel[]> {
         });
     }
 
-    return ketQua;
+    return {ketQua: ketQua, tongSoSach: tongSoTrang, tongSoTrang: tongSoTrang};
 }
 
-export async function layToanBoSach(): Promise<SachModel[]> {
+export async function layToanBoSach(trang: number): Promise<KetQuaInterface> {
    
     // Xác định endpoint
-    const duongDan: string = 'http://localhost:8080/sach?sort=maSach,desc';
+    const duongDan: string = `http://localhost:8080/sach?sort=maSach,desc&size=8&page=${trang}`;
 
     return laySach(duongDan);
 
 }
 
-export async function lay3SachMoiNhat(): Promise<SachModel[]> {
+export async function lay3SachMoiNhat(): Promise<KetQuaInterface> {
    
     // Xác định endpoint
     const duongDan: string = 'http://localhost:8080/sach?sort=maSach,desc&page=0&size=3';
@@ -46,3 +55,5 @@ export async function lay3SachMoiNhat(): Promise<SachModel[]> {
     return laySach(duongDan);
 
 }
+
+

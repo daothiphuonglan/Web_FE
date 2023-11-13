@@ -29,21 +29,7 @@ const SachProps: React.FC<SachPropsInterface> = (props) => {
     }, [] // Chi goi mot lan
     )
 
-    if (dangTaiDuLieu) {
-        return (
-            <div>
-                <h1>Đang tải dữ liệu</h1>
-            </div>
-        );
-    }
-
-    if (baoLoi) {
-        return (
-            <div>
-                <h1>Gặp lỗi: {baoLoi}</h1>
-            </div>
-        );
-    }
+  
 
     let duLieuAnh:string="";
     if(danhSachAnh[0] && danhSachAnh[0].duLieuAnh){
