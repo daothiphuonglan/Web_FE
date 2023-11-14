@@ -7,7 +7,7 @@ interface CarouselItemInterface {
     sach: SachModel;
 }
 
-const CarouselItem: React.FC<CarouselItemInterface> = (props) => {
+const CarouSelItem: React.FC<CarouselItemInterface> = (props) => {
 
     const maSach: number = props.sach.maSach;
 
@@ -63,4 +63,4 @@ const CarouselItem: React.FC<CarouselItemInterface> = (props) => {
         </div>
     );
 }
-export default CarouselItem;
+export default CarouSelItem;

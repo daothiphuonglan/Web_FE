@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { error } from "console";
 import { lay3SachMoiNhat } from "../../../api/SachApi";
 import SachModel from "../../../model/SachModel";
-import CarouselItem from "./CarouSelItem";
+import CarouSelItem from "./CarouSelItem";
 
-const Carousel: React.FC = () => {
+const CarouSel: React.FC = () => {
     const [danhSachQuyenSach, setDanhSachQuyenSach] = useState<SachModel[]>([]);
     const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
     const [baoLoi, setBaoLoi] = useState(null);
@@ -46,13 +46,13 @@ const Carousel: React.FC = () => {
             <div id="carouselExampleDark" className="carousel carousel-dark slide">
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval="10000">
-                        <CarouselItem key={0} sach={danhSachQuyenSach[0]} />
+                        <CarouSelItem key={0} sach={danhSachQuyenSach[0]} />
                     </div>
                     <div className="carousel-item " data-bs-interval="10000">
-                        <CarouselItem key={1} sach={danhSachQuyenSach[1]} />
+                        <CarouSelItem key={1} sach={danhSachQuyenSach[1]} />
                     </div>
                     <div className="carousel-item " data-bs-interval="10000">
-                        <CarouselItem key={2} sach={danhSachQuyenSach[2]} />
+                        <CarouSelItem key={2} sach={danhSachQuyenSach[2]} />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -68,4 +68,4 @@ const Carousel: React.FC = () => {
     );
 }
 
-export default Carousel;
+export default CarouSel;

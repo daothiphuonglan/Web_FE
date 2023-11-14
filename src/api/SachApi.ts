@@ -35,7 +35,7 @@ async function laySach(duongDan: string): Promise<KetQuaInterface> {
         });
     }
 
-    return {ketQua: ketQua, tongSoSach: tongSoTrang, tongSoTrang: tongSoTrang};
+    return {ketQua: ketQua, tongSoSach: tongSoSach, tongSoTrang: tongSoTrang};
 }
 
 export async function layToanBoSach(trang: number): Promise<KetQuaInterface> {
@@ -56,12 +56,16 @@ export async function lay3SachMoiNhat(): Promise<KetQuaInterface> {
 
 }
 
-export async function timKiemSach(tuKhoaTimKiem: string): Promise<KetQuaInterface> {
+export async function timKiemSach(tuKhoaTimKiem: string, maTheLoai:number): Promise<KetQuaInterface> {
 
     // Xác định endpoint
     let duongDan: string = `http://localhost:8080/sach?sort=maSach,desc&size=8&page=0`;
-    if (tuKhoaTimKiem !== '') {
+    if (tuKhoaTimKiem !== '' && maTheLoai===0) {
         duongDan=`http://localhost:8080/sach/search/findByTenSachContaining?sort=maSach,desc&size=8&page=0&tenSach=${tuKhoaTimKiem}`
+    }else  if (tuKhoaTimKiem === '' && maTheLoai>0) {
+        duongDan=`http://localhost:8080/sach/search/findByDanhSachTheLoai_MaTheLoai?sort=maSach,desc&size=8&page=0&maTheLoai=${maTheLoai}`
+    }else  if (tuKhoaTimKiem !== '' && maTheLoai>0) {
+        duongDan=`http://localhost:8080/sach/search/findByTenSachContainingAndDanhSachTheLoai_MaTheLoai?sort=maSach,desc&size=8&page=0&maTheLoai=${maTheLoai}&tenSach=${tuKhoaTimKiem}`
     }
 
     return laySach(duongDan);
