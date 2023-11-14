@@ -56,4 +56,16 @@ export async function lay3SachMoiNhat(): Promise<KetQuaInterface> {
 
 }
 
+export async function timKiemSach(tuKhoaTimKiem: string): Promise<KetQuaInterface> {
+
+    // Xác định endpoint
+    let duongDan: string = `http://localhost:8080/sach?sort=maSach,desc&size=8&page=0`;
+    if (tuKhoaTimKiem !== '') {
+        duongDan=`http://localhost:8080/sach/search/findByTenSachContaining?sort=maSach,desc&size=8&page=0&tenSach=${tuKhoaTimKiem}`
+    }
+
+    return laySach(duongDan);
+
+}
+
 

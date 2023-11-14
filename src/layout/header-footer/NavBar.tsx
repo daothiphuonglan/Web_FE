@@ -7,8 +7,28 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { SiMdbook } from 'react-icons/si';
 import {BsFillCartFill} from 'react-icons/bs'
 import {BsFillPersonFill} from 'react-icons/bs'
+import { ChangeEvent } from 'react';
+import { useState } from 'react';
 
-function NavBar() {
+interface NavbarProps {
+  tuKhoaTimKiem:string ;
+  setTuKhoaTimKiem:(tuKhoa:string)=> void;
+}
+function NavBar({tuKhoaTimKiem, setTuKhoaTimKiem}:NavbarProps) {
+  
+  const [tuKhoaTamThoi, setTuKhoaTamThoi]= useState('');
+
+  const onSearchInputChange=(e:ChangeEvent<HTMLInputElement>)=>{
+    setTuKhoaTamThoi (e.target.value);   
+   
+  }
+
+  const handleSearch =()=>{
+      setTuKhoaTimKiem(tuKhoaTamThoi);
+  }
+  
+  
+  
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -36,15 +56,17 @@ function NavBar() {
               Link
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <div className="d-flex">
             <Form.Control
+              value={tuKhoaTamThoi}
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onChange={onSearchInputChange}
             />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+            <Button variant="outline-success" type='button' onClick={handleSearch}>Search</Button>
+          </div>
  
           <BsFillCartFill/>
           <BsFillPersonFill/>

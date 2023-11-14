@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import SachModel from "../../model/SachModel";
 import SachProps from "./components/SachProps";
-import { layToanBoSach } from "../../api/SachApi";
+import { layToanBoSach, timKiemSach } from "../../api/SachApi";
 import { error } from "console";
 import PhanTrang  from "../utils/PhanTrang";
 
-const DanhSachSanPham: React.FC = () => {
+
+interface DanhSachSanPhamProps {
+    tuKhoaTimKiem: string;
+}
+
+function DanhSachSanPham({ tuKhoaTimKiem }: DanhSachSanPhamProps) {
 
     const [danhSachQuyenSach, setDanhSachQuyenSach] = useState<SachModel[]>([]);
     const [dangTaiDuLieu, setDangTaiDuLieu] = useState(true);
@@ -14,22 +19,35 @@ const DanhSachSanPham: React.FC = () => {
     const [tongSoTrang, setTongSoTrang] = useState(0);
     const [tongSoSach, setSoSach] = useState(0);
 
-    console.log(trangHienTai);
-
     useEffect(() => {
-        layToanBoSach(trangHienTai-1).then(
-            kq =>{
-                setDanhSachQuyenSach(kq.ketQua);
-                setTongSoTrang(kq.tongSoTrang);
-                setDangTaiDuLieu(false);
-            }
-        ).catch(
-            error => {
-                setDangTaiDuLieu(false);
-                setBaoLoi(error.message);
-            }
-        );
-    }, [trangHienTai]);
+        if (tuKhoaTimKiem === '') {
+            layToanBoSach(trangHienTai - 1).then(
+                kq => {
+                    setDanhSachQuyenSach(kq.ketQua);
+                    setTongSoTrang(kq.tongSoTrang);
+                    setDangTaiDuLieu(false);
+                }
+            ).catch(
+                error => {
+                    setDangTaiDuLieu(false);
+                    setBaoLoi(error.message);
+                }
+            );
+        }else{
+            timKiemSach(tuKhoaTimKiem).then(
+                kq => {
+                    setDanhSachQuyenSach(kq.ketQua);
+                    setTongSoTrang(kq.tongSoTrang);
+                    setDangTaiDuLieu(false);
+                }
+            ).catch(
+                error => {
+                    setDangTaiDuLieu(false);
+                    setBaoLoi(error.message);
+                }
+            );
+        }
+    }, [trangHienTai, tuKhoaTimKiem]);
 
     const phanTrang = (trang: number) => {
         setTrangHienTai(trang);
@@ -53,6 +71,17 @@ const DanhSachSanPham: React.FC = () => {
         );
     }
 
+
+    if(danhSachQuyenSach.length===0){
+        return (
+            <div className="container">
+                <div className="d-flex align-items-center justify-content-center">
+                    <h1>Hiện không tìm thấy sách theo yêu cầu!</h1>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="container">
             <div className="row mt-4 mb-4">
@@ -63,7 +92,7 @@ const DanhSachSanPham: React.FC = () => {
                     )
                 }
             </div>
-            <PhanTrang trangHienTai={trangHienTai} tongSoTrang={tongSoTrang} phanTrang={phanTrang}/>
+            <PhanTrang trangHienTai={trangHienTai} tongSoTrang={tongSoTrang} phanTrang={phanTrang} />
         </div>
     );
 }
