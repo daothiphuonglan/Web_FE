@@ -7,6 +7,7 @@ import HomePage from './layout/HomePage/HomePage';
 import { useState } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import About from './layout/about/About';
+import ChiTietSanPham from './layout/product/ChiTietSanPham';
 function App() {
   const [tuKhoaTimKiem, setTuKhoaTimKiem] = useState('');
   return (
@@ -21,6 +22,7 @@ function App() {
          <Route path="/" element={<HomePage tuKhoaTimKiem={tuKhoaTimKiem}></HomePage>}/>
          <Route path="/:maTheLoai" element={<HomePage tuKhoaTimKiem={tuKhoaTimKiem}></HomePage>}/>
          <Route path="/about" element={<About></About>}/>
+         <Route path="/sach/:maSach" element={<ChiTietSanPham></ChiTietSanPham>}/>
       </Routes>
 
       
