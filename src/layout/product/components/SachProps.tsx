@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import HinHAnhModel from '../../../model/HinhAnhModel';
 import { layToanBoAnhCuaMotSach } from "../../../api/HinhAnhApi";
 import {Link} from 'react-router-dom'
+import dinhDangSo from '../../utils/DinhDanhSo';
 interface SachPropsInterface {
     sach:SachModel;
 } 
@@ -57,10 +58,11 @@ const SachProps: React.FC<SachPropsInterface> = (props) => {
                     <p className="card-text">{props.sach.moTa}</p>
                     <div className="price">
                         <span className="original-price">
-                            <del>{props.sach.giaNiemYet}</del>
+
+                            <del>{dinhDangSo(props.sach.giaNiemYet)} d</del>
                         </span>
-                        <span className="discounted-price">
-                            <strong>{props.sach.giaBan}</strong>
+                        <span className="discounted-price m-4">
+                            <strong>{dinhDangSo(props.sach.giaBan)} d</strong>
                         </span>
                     </div>
                     <div className="row mt-2" role="group">

@@ -3,6 +3,7 @@ import SachModel from "../../../model/SachModel";
 import HinHAnhModel from '../../../model/HinhAnhModel';
 import { layToanBoDanhGiaCuaMotSach } from "../../../api/DanhGiaApi";
 import DanhGiaModel from "../../../model/DanhGiaModel";
+import renderRating from "../../utils/SaoXepHang";
 
 interface DanhGiaSanPham {
     maSach: number;
@@ -31,9 +32,9 @@ const DanhGiaSanPham: React.FC<DanhGiaSanPham> = (props) => {
     }, [] // Chi goi mot lan
     )
 
-    console.log(danhSachDanhGia.length);
+   
 
-    // console.log(danhSachDanhGia.length);
+    
 
     if (dangTaiDuLieu) {
         return (
@@ -58,7 +59,8 @@ const DanhGiaSanPham: React.FC<DanhGiaSanPham> = (props) => {
                 danhSachDanhGia.map((danhGia, index) => (
                     <div className="row">
                         <div className="col-4  text-end">
-                            <p>{danhGia.diemXepHang}</p>
+                            {renderRating(danhGia.diemXepHang? danhGia.diemXepHang:0)}
+                           
                         </div>
                         <div className="col-8 text-start">
                             <p>{danhGia.nhanXet}</p>
