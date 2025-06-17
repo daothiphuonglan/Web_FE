@@ -29,6 +29,7 @@ function HomePage({tuKhoaTimKiem}: HomePageProps){
             <DanhSachSanPham tuKhoaTimKiem={tuKhoaTimKiem} maTheLoai={maTheLoaiNumber}/>
             <h2>Hi</h2>
             <h2>Thu revert moi thu</h2>
+            <h2>Thu revert nhieu lan hon nua</h2>
         </div>
     );
 }

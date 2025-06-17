@@ -161,6 +161,7 @@ const ChiTietSanPham: React.FC = () => {
                 
                 <DanhGiaSanPham maSach={maSachNumber} />
             </div>
+            <h2>Hi</h2>
         </div>
     );
 }
