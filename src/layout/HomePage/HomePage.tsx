@@ -27,6 +27,8 @@ function HomePage({tuKhoaTimKiem}: HomePageProps){
             <Banner />
             <CarouSel />
             <DanhSachSanPham tuKhoaTimKiem={tuKhoaTimKiem} maTheLoai={maTheLoaiNumber}/>
+            <h2>Hi</h2>
+            <h2>Thu revert moi thu</h2>
         </div>
     );
 }
