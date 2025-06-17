@@ -88,7 +88,7 @@ function DanhSachSanPham({ tuKhoaTimKiem, maTheLoai }: DanhSachSanPhamProps) {
             <div className="row mt-4 mb-4">
                 {
                     danhSachQuyenSach.map((sach) => (
-                        <SachProps key={sach.maSach} sach={sach} />
+                        <SachProps key={sach.maSach} sach={sach}  />
                     )
                     )
                 }

@@ -43,7 +43,7 @@ const SachProps: React.FC<SachPropsInterface> = (props) => {
                 <Link to={`/sach/${props.sach.maSach}`}>
                 
                 <img
-                    src={""}
+                    src={duLieuAnh}
                     className="card-img-top"
                     
                     style={{ height: '200px' }}
