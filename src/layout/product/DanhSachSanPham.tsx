@@ -93,6 +93,7 @@ function DanhSachSanPham({ tuKhoaTimKiem, maTheLoai }: DanhSachSanPhamProps) {
                     )
                 }
             </div>
+            <div>H aha ah ah a</div>
             <PhanTrang trangHienTai={trangHienTai} tongSoTrang={tongSoTrang} phanTrang={phanTrang} />
         </div>
     );
