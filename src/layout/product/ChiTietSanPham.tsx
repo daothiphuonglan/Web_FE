@@ -157,11 +157,10 @@ const ChiTietSanPham: React.FC = () => {
                 </div>
             </div>
             <div className="row mt-4 mb-4">
-
+                 <h2>Ha ha chi tiet</h2>
                 
                 <DanhGiaSanPham maSach={maSachNumber} />
             </div>
-            <h2>Hi</h2>
         </div>
     );
 }
